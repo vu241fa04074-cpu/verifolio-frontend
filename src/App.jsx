@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useMemo } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import ProtectedRoute    from "./routes/ProtectedRoute";
@@ -22,22 +22,24 @@ const PublicProfile = lazy(() => import("./pages/PublicProfile"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const PageFallback = () => (
-  <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+  <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 flex items-center justify-center">
     <Loader />
   </div>
 );
 
 export default function App() {
+  const toasterConfig = useMemo(() => ({
+    position: "top-right",
+    toastOptions: {
+      style: { background: "#ffffff", color: "#0f172a", border: "1px solid #e2e8f0" },
+      success: { iconTheme: { primary: "#16a34a", secondary: "#fff" } },
+      error:   { iconTheme: { primary: "#dc2626", secondary: "#fff" } },
+    }
+  }), []);
+
   return (
     <>
-      <Toaster
-        position="top-right"
-        toastOptions={{
-          style: { background: "#ffffff", color: "#0f172a", border: "1px solid #e2e8f0" },
-          success: { iconTheme: { primary: "#16a34a", secondary: "#fff" } },
-          error:   { iconTheme: { primary: "#dc2626", secondary: "#fff" } },
-        }}
-      />
+      <Toaster {...toasterConfig} />
       <Suspense fallback={<PageFallback />}>
         <Routes>
           {/* Public */}

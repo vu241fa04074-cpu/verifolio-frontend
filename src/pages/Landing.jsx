@@ -104,19 +104,25 @@ export default function Landing() {
       </header>
 
       <main>
-        <section className="border-b border-slate-200 bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)] px-4 py-16 sm:px-6 lg:py-24">
-          <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <section className="relative border-b border-slate-200 bg-gradient-to-br from-slate-50 via-white to-slate-50 overflow-hidden px-4 py-16 sm:px-6 lg:py-24">
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute top-0 left-1/4 w-72 h-72 bg-blue-100 rounded-full opacity-20 blur-3xl"></div>
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-100 rounded-full opacity-20 blur-3xl"></div>
+          </div>
+          <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
             <motion.div variants={fadeUp} initial="hidden" animate="visible">
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700">
-                <Sparkles size={16} />
+                <Sparkles size={16} className="animate-spin" style={{ animationDuration: '3s' }} />
                 Professional digital portfolio and verification platform
               </div>
-              <h1 className="max-w-4xl text-4xl font-black leading-tight tracking-normal text-slate-950 sm:text-5xl lg:text-6xl">
-                VERIFOLIO DIGITAL PLATFORM
+              <h1 className="max-w-4xl text-4xl font-black leading-tight tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
+                Build Your<br />
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  Verified Portfolio
+                </span>
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-                Build a public portfolio that shows your projects, certifications, achievements,
-                coding profiles, GitHub repositories, and verification status in one polished place.
+                Showcase projects, certifications, achievements, coding profiles, GitHub repos, and verified credentials in one polished professional platform.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link to="/register" className="app-button-primary px-6 py-3 text-base">
@@ -125,7 +131,7 @@ export default function Landing() {
                 </Link>
                 <a href={githubUrl} target="_blank" rel="noreferrer" className="app-button-secondary px-6 py-3 text-base">
                   <Github size={18} />
-                  View Project GitHub
+                  View Source
                 </a>
               </div>
             </motion.div>
@@ -135,12 +141,12 @@ export default function Landing() {
               initial="hidden"
               animate="visible"
               custom={1}
-              className="rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-xl shadow-slate-200/70"
+              className="group rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-2xl shadow-slate-300/30 hover:shadow-2xl hover:shadow-blue-200/40 transition-all duration-500"
             >
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-5">
                 <div className="mb-5 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-xl font-bold text-white">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-blue-700 text-xl font-bold text-white shadow-lg">
                       A
                     </div>
                     <div>
@@ -148,7 +154,7 @@ export default function Landing() {
                       <p className="text-sm text-slate-500">Full Stack Developer | @aaravdev</p>
                     </div>
                   </div>
-                  <span className="app-badge bg-emerald-50 text-emerald-700">
+                  <span className="app-badge bg-emerald-50 text-emerald-700 border-emerald-200">
                     <CheckCircle2 size={14} />
                     Verified
                   </span>
@@ -160,27 +166,26 @@ export default function Landing() {
                     ["Certificates", "04"],
                     ["Endorsements", "11"],
                   ].map(([label, value]) => (
-                    <div key={label} className="rounded-2xl border border-slate-200 bg-white p-4">
-                      <div className="text-2xl font-black text-slate-950">{value}</div>
+                    <div key={label} className="rounded-2xl border border-slate-200 bg-white p-4 hover:border-blue-300 hover:shadow-md transition-all duration-300">
+                      <div className="text-2xl font-black bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">{value}</div>
                       <div className="text-sm text-slate-500">{label}</div>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-5 rounded-2xl border border-slate-200 bg-white p-4">
+                <div className="mt-5 rounded-2xl border border-slate-200 bg-white p-4 hover:border-blue-200 hover:shadow-md transition-all duration-300">
                   <div className="mb-3 flex items-center justify-between">
                     <h3 className="font-bold text-slate-950">Featured Project</h3>
-                    <a href={githubUrl} target="_blank" rel="noreferrer" className="text-blue-600">
+                    <a href={githubUrl} target="_blank" rel="noreferrer" className="text-blue-600 hover:text-blue-700 transition">
                       <ExternalLink size={18} />
                     </a>
                   </div>
                   <p className="text-sm leading-6 text-slate-600">
-                    Digital portfolio app with authentication, project uploads, verification requests,
-                    endorsements, and analytics.
+                    Digital portfolio app with authentication, project uploads, verification requests, endorsements, and analytics.
                   </p>
                   <div className="mt-4 flex flex-wrap gap-2">
                     {["React", "Node.js", "MongoDB", "Express"].map((skill) => (
-                      <span key={skill} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+                      <span key={skill} className="rounded-full bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 px-3 py-1 text-xs font-semibold text-blue-700 hover:border-blue-300 transition">
                         {skill}
                       </span>
                     ))}
@@ -188,13 +193,13 @@ export default function Landing() {
                 </div>
 
                 <div className="mt-5 grid grid-cols-3 gap-3">
-                  <span className="flex items-center justify-center rounded-xl border border-slate-200 bg-white py-3 text-slate-700">
+                  <span className="flex items-center justify-center rounded-xl border border-slate-200 bg-white py-3 text-slate-700 hover:text-blue-600 hover:border-blue-300 transition">
                     <Github size={18} />
                   </span>
-                  <span className="flex items-center justify-center rounded-xl border border-slate-200 bg-white py-3 text-slate-700">
+                  <span className="flex items-center justify-center rounded-xl border border-slate-200 bg-white py-3 text-slate-700 hover:text-blue-600 hover:border-blue-300 transition">
                     <Linkedin size={18} />
                   </span>
-                  <span className="flex items-center justify-center rounded-xl border border-slate-200 bg-white py-3 text-slate-700">
+                  <span className="flex items-center justify-center rounded-xl border border-slate-200 bg-white py-3 text-slate-700 hover:text-blue-600 hover:border-blue-300 transition">
                     <Code2 size={18} />
                   </span>
                 </div>
@@ -203,12 +208,12 @@ export default function Landing() {
           </div>
         </section>
 
-        <section className="px-4 py-16 sm:px-6">
+        <section className="px-4 py-16 sm:px-6 bg-gradient-to-b from-white to-slate-50">
           <div className="mx-auto max-w-7xl">
             <div className="mb-10 max-w-3xl">
               <p className="text-sm font-bold uppercase tracking-widest text-blue-600">Platform Features</p>
               <h2 className="mt-3 text-3xl font-black text-slate-950 sm:text-4xl">
-                Everything needed for a credible public profile.
+                Everything for a <span className="text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">credible public profile</span>
               </h2>
             </div>
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -222,9 +227,9 @@ export default function Landing() {
                     whileInView="visible"
                     viewport={{ once: true }}
                     custom={index}
-                    className="app-card p-6"
+                    className="app-card p-6 group hover:-translate-y-1"
                   >
-                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-blue-100 to-blue-50 text-blue-600 group-hover:shadow-lg transition-all duration-300">
                       <Icon size={22} />
                     </div>
                     <h3 className="text-lg font-bold text-slate-950">{feature.title}</h3>
@@ -261,36 +266,41 @@ export default function Landing() {
         </section>
 
         <section className="px-4 py-16 sm:px-6">
-          <div className="mx-auto flex max-w-5xl flex-col items-center rounded-[1.5rem] border border-blue-100 bg-blue-600 px-6 py-12 text-center text-white shadow-xl shadow-blue-200 sm:px-12">
-            <ShieldCheck size={46} />
-            <h2 className="mt-5 text-3xl font-black sm:text-4xl">Start building your public verified portfolio.</h2>
-            <p className="mt-4 max-w-2xl text-blue-50">
-              Add profile photo, coding links, projects, credentials, work history, and verification requests from one dashboard.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link to="/register" className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-bold text-blue-700 transition hover:bg-blue-50">
-                Create Account
-                <ArrowRight size={18} />
-              </Link>
-              <Link to="/login" className="inline-flex items-center justify-center rounded-xl border border-blue-300 px-6 py-3 text-sm font-bold text-white transition hover:bg-blue-500">
-                Sign In
-              </Link>
+          <div className="mx-auto flex max-w-5xl flex-col items-center rounded-[2rem] border border-blue-100 bg-gradient-to-br from-blue-600 via-blue-600 to-purple-700 px-6 py-12 text-center text-white shadow-2xl shadow-blue-300/40 sm:px-12 relative overflow-hidden group">
+            <div className="absolute inset-0 opacity-10 pointer-events-none">
+              <div className="absolute top-0 right-0 w-40 h-40 bg-white rounded-full blur-3xl"></div>
+            </div>
+            <div className="relative">
+              <ShieldCheck size={46} className="mx-auto animate-float" />
+              <h2 className="mt-5 text-3xl font-black sm:text-4xl">Start building your verified portfolio.</h2>
+              <p className="mt-4 max-w-2xl mx-auto text-blue-100">
+                Add projects, certifications, coding profiles, and verification requests from one beautiful, professional dashboard.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row justify-center">
+                <Link to="/register" className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-bold text-blue-700 transition hover:bg-blue-50 hover:shadow-lg">
+                  Create Account
+                  <ArrowRight size={18} />
+                </Link>
+                <Link to="/login" className="inline-flex items-center justify-center rounded-xl border border-blue-300 px-6 py-3 text-sm font-bold text-white transition hover:bg-blue-500">
+                  Sign In
+                </Link>
+              </div>
             </div>
           </div>
         </section>
       </main>
 
-      <footer className="border-t border-slate-200 bg-white px-4 py-8 sm:px-6">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+      <footer className="border-t border-slate-200 bg-gradient-to-b from-white to-slate-50 px-4 py-8 sm:px-6">
+        <div className="mx-auto flex max-w-7xl flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-2">
             <ShieldCheck size={18} className="text-blue-600" />
-            <span className="font-bold text-slate-950">VERIFOLIO DIGITAL PLATFORM</span>
-            <span>{new Date().getFullYear()}</span>
+            <span className="font-bold text-slate-950">VERIFOLIO</span>
+            <span className="text-slate-500">{new Date().getFullYear()}</span>
           </div>
-          <div className="flex items-center gap-5">
-            <Link to="/login" className="font-semibold hover:text-blue-700">Login</Link>
-            <Link to="/register" className="font-semibold hover:text-blue-700">Register</Link>
-            <a href={githubUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1 font-semibold hover:text-blue-700">
+          <div className="flex items-center gap-5 text-sm text-slate-600">
+            <Link to="/login" className="font-semibold hover:text-blue-700 transition">Login</Link>
+            <Link to="/register" className="font-semibold hover:text-blue-700 transition">Register</Link>
+            <a href={githubUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1 font-semibold hover:text-blue-700 transition">
               <Github size={16} />
               GitHub
             </a>
